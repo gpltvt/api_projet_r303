@@ -1,3 +1,6 @@
 # Projet API
 
 **README A COMPLETER**
+
+BAELDEN Tom
+PLAETEVOET Gaëlle
