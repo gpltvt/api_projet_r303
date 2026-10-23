@@ -1,0 +1,22 @@
+info:
+  name: Créer un form
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:8084/forms
+  body:
+    type: json
+    data: |-
+      {
+        "title": "Premier form"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
