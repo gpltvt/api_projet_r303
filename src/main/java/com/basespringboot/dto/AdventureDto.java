@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter 
 @Setter 
 
-public class FormDto {
+public class AdventureDto {
 
     @NotBlank 
     private String title;
