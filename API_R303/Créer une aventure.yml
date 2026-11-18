@@ -1,16 +1,16 @@
 info:
-  name: Créer un form
+  name: Créer une aventure
   type: http
   seq: 1
 
 http:
   method: POST
-  url: http://localhost:8084/forms
+  url: http://localhost:8084/adventures
   body:
     type: json
     data: |-
       {
-        "title": "Premier form"
+        "title": "Première aventure"
       }
   auth: inherit
 

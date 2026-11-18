@@ -1,11 +1,11 @@
 info:
-  name: Modifier un form
+  name: Modifier une aventure
   type: http
   seq: 5
 
 http:
   method: PUT
-  url: http://localhost:8084/forms/1
+  url: http://localhost:8084/adventures/1
   body:
     type: json
     data: |-

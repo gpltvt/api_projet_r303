@@ -1,11 +1,11 @@
 info:
-  name: Supprimer un form
+  name: Toutes les aventures
   type: http
-  seq: 6
+  seq: 3
 
 http:
-  method: DELETE
-  url: http://localhost:8084/forms/1
+  method: GET
+  url: http://localhost:8084/adventures
   auth: inherit
 
 settings:
