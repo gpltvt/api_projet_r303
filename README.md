@@ -10,9 +10,24 @@ Les tâches sont suivies sur notre GitHub Board et le travail est partagé par c
 ## Explication du projet
 API de carnet d'aventure sur le thème de The Legend of Zelda, réalisée avec Spring Boot dans le cadre du cours R3-03 (BUT2). Un utilisateur crée des aventures et y consigne les éléments de Hyrule rencontrées (monstres, matériaux, équipements, ...), dont les données proviennent de l'API externe Hyrule Compendium.
 
+### Etat d'avancement
+| Fonctionnalité | Etat |
+| --- | --- |
+| CRUD complet sur `Adventure` | Terminé |
+| Validation des données et gestion du 404 | Terminé |
+| Tests de l'API avec Bruno | Terminé |
+| Import de Hyrule Compendium en base | A faire |
+| Relation One-to-Many entre `Adventure` et ses entrées | A faire |
+| Authentification par Bearer token | A faire |
+
+### API externe
+Les données sur le monde de Zelda viennent de l'API évoquée plus tôt, publiée sous licence MIT. Elle couvre les jeux *Breath Of The Wild* et *Tears Of The Kingdom*.
+Cette API est hébergée gratuitement et peut être lente/indisponible. Pour ne pas en dépendre à chaque requête, nous prévoyons d'en copier les données dans notre BDD (PostgreSQL).
+
 ## Technologies du projet
 - Java 21, Spring Boot, Spring Data JPA / Hibernate
 - PostgreSQL 16 (BDD)
+- Tables créées automatiquement par Hibernate (`ddl-auto: update`), sans perte de données entre 2 redémarrages.
 - Docker et Docker Compose
 - Maven, Lombok, Bean Validation
 - API externe: [Hyrule Compendium API](https://gadhagod.github.io/Hyrule-Compendium-API) (Licence MIT)
