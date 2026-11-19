@@ -1,0 +1,16 @@
+info:
+  name: Compendium - réimporter
+  type: http
+  seq: 11
+
+http:
+  method: POST
+  url: http://localhost:8084/compendium/import
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
