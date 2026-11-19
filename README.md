@@ -62,7 +62,7 @@ L'API est disponible sur `http://localhost:8084`. Adminer (interface de la base)
 Base URL: `http://localhost:8084`
 
 | Méthode | Route | Description | Jeton | Succès | Erreurs |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- |
 | POST | `/adventures` | Créer une aventure | | 201 | 400 |
 | GET | `/adventures` | Lister toutes les aventures | | 200 | |
 | GET | `/adventures/{id}` | Récupérer une aventure | | 200 | 404 |
