@@ -18,7 +18,7 @@ API de carnet d'aventure sur le thème de The Legend of Zelda, réalisée avec S
 | Tests de l'API avec Bruno | Terminé |
 | Import de Hyrule Compendium en base | Terminé |
 | Relation One-to-Many entre `Adventure` et ses entrées | Terminé |
-| Authentification par Bearer token | A faire |
+| Authentification par Bearer token | Terminé |
 
 ### API externe
 Les données sur le monde de Zelda viennent de l'API évoquée plus tôt, publiée sous licence MIT. Elle couvre les jeux *Breath Of The Wild* et *Tears Of The Kingdom*.
@@ -42,7 +42,7 @@ Code organisé en couches:
 - `dto` objet reçu dans les requêtes, avec validation
 
 ### Modèle de données
-Une aventure contient plusieurs pages (relation **One-to-Many""). Chaque page est liée à un élément du compendium.
+Une aventure contient plusieurs pages (relation **One-to-Many**). Chaque page est liée à un élément du compendium.
 
 **SCHEMA MERMAID A IMPORTER**
 
@@ -51,27 +51,36 @@ La suppression d'une aventure supprimer aussi ses pages (cascade).
 ### Lancer l'application
 Prérequis: Docker et Docker Compose
 ```bash
+cp .env.example .env
+echo "JWT_SECRET=$(openssl rand -hex 32)" > .env
 docker compose up -d --build
 ```
+Le fichier `.env` contient la clé qui signe les jetons: il n'est pas versionné et ne doit jamais être publié.
 L'API est disponible sur `http://localhost:8084`. Adminer (interface de la base) accessible sur `http://localhost:8081`.
 
 ## Documentation de l'API
 Base URL: `http://localhost:8084`
 
-| Méthode | Route | Description | Succès | Erreurs |
+| Méthode | Route | Description | Jeton | Succès | Erreurs |
 | --- | --- | --- | --- | --- |
-| POST | `/adventures` | Créer une aventure | 201 | 400 |
-| GET | `/adventures` | Lister toutes les aventures | 200 | |
-| GET | `/adventures/{id}` | Récupérer une aventure | 200 | 404 |
-| GET | `/adventures/{id}` | Modifier une aventure | 200 | 400, 404 |
-| DELETE | `/adventures/{id}` | Supprimer une aventure | 204 | 404 |
-| POST | `compendium/import` | Importer le Hyrule Compendium en base | 200 | 502 (API externe indisponible) |
-| GET | `/compendium/{id}` | Lister les éléments du compendium | 200 | |
-| GET | `/compendium/{id}` | Récupérer un élément du compendium | 200 | 404 |
-| POST | `/adventures/{id}/entries` | Ajouter une page à une aventure | 201 | 400, 404 |
-| GET | `/adventures/{id}/entries` | Lister les pages d'une aventure | 200 | 404 |
-| PUT | `/adventures/{id}/entries/{entryId}` | Modifier une page | 200 | 400, 404 |
-| DELETE | `/adventures/{id}/entries/{entryId}` | Supprimer une page | 204 | 404 |
+| POST | `/adventures` | Créer une aventure | | 201 | 400 |
+| GET | `/adventures` | Lister toutes les aventures | | 200 | |
+| GET | `/adventures/{id}` | Récupérer une aventure | | 200 | 404 |
+| GET | `/adventures/{id}` | Modifier une aventure | | 200 | 400, 404 |
+| DELETE | `/adventures/{id}` | Supprimer une aventure | | 204 | 404 |
+| POST | `compendium/import` | Importer le Hyrule Compendium en base | | 200 | 502 (API externe indisponible) |
+| GET | `/compendium/{id}` | Lister les éléments du compendium | | 200 | |
+| GET | `/compendium/{id}` | Récupérer un élément du compendium | | 200 | 404 |
+| POST | `/adventures/{id}/entries` | Ajouter une page à une aventure | | 201 | 400, 404 |
+| GET | `/adventures/{id}/entries` | Lister les pages d'une aventure | | 200 | 404 |
+| PUT | `/adventures/{id}/entries/{entryId}` | Modifier une page ||  200 | 400, 404 |
+| DELETE | `/adventures/{id}/entries/{entryId}` | Supprimer une page | | 204 | 404 |
+| POST | `/auth/register` | Créer un compte | Non | 201 | 400, 409 |
+| POST | `/auth/login` | Se connecter (renvoie un jeton) | Non | 200 | 400, 401 |
+| GET | `/compendium`, `/compendium{id}` | Lire le compendium | Non | 200 | 404 |
+| POST | `/compendium/import` | Importer le compendium | Oui | 200 | 401, 502 |
+Les routes protégées demandent l'en-tête `Authorization: Bearer <jeton>`.
+Remarque: un jeton absent, invalide ou expiré renverra **401**.
 
 ### Tests
 Les requêtes de test sont dans le dossier `API_R303` : à ouvrir avec Bruno.
@@ -116,7 +125,7 @@ Standard permettant à une application d'accéder à des informations d'un utili
 
 Les 3 notions vues se combinent.
 
-### Notre choix (futur):
+### Notre choix:
 Version simple avec Spring Security:
 - Route d'inscription et route de connexion, renvoyant un JWT.
 - Routes d'écriture réservées aux utiliateurs envoyant un jeton Bearer valide.
