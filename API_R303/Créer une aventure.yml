@@ -10,7 +10,7 @@ http:
     type: json
     data: |-
       {
-        "title": "Première aventure"
+        "title": "7e aventure"
       }
   auth: inherit
 
