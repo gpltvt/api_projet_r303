@@ -43,9 +43,6 @@ Code organisé en couches:
 
 ### Modèle de données
 Une aventure contient plusieurs pages (relation **One-to-Many**). Chaque page est liée à un élément du compendium.
-
-**SCHEMA MERMAID A IMPORTER**
-
 La suppression d'une aventure supprimer aussi ses pages (cascade).
 
 ### Lancer l'application
@@ -81,7 +78,7 @@ Base URL: `http://localhost:8084`
 | POST | `/compendium/import` | Importer le compendium | Oui | 200 | 401, 502 |
 
 Les routes protégées demandent l'en-tête `Authorization: Bearer <jeton>`.
-Remarque: un jeton absent, invalide ou expiré renverra **401**.
+**Remarque**: un jeton absent, invalide ou expiré renverra **401**.
 
 ### Tests
 Les requêtes de test sont dans le dossier `API_R303` : à ouvrir avec Bruno.
