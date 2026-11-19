@@ -6,6 +6,11 @@ info:
 http:
   method: GET
   url: https://api.hyrule-compendium.com/v3/compendium/all
+  params:
+    - name: Authorization
+      value: ""
+      type: query
+      disabled: true
   auth: inherit
 
 settings:

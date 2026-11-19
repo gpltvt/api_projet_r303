@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8084/adventures/5/entries
+  url: http://localhost:8084/adventures/7/entries
   auth: inherit
 
 settings:

@@ -1,0 +1,23 @@
+info:
+  name: Authentification2
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:8084/auth/register
+  body:
+    type: json
+    data: |-
+      {
+        "username": "tom",
+        "password": "unMotDePasseTest2"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

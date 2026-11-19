@@ -1,0 +1,23 @@
+info:
+  name: Erreur 400 (test)
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: http://localhost:8084/auth/register
+  body:
+    type: json
+    data: |-
+      {
+        "username": "ab",
+        "password": "court"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

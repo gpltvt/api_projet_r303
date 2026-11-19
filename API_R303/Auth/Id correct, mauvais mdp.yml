@@ -1,0 +1,23 @@
+info:
+  name: Id correct, mauvais mdp
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: http://localhost:8084/auth/login
+  body:
+    type: json
+    data: |-
+      {
+        "username": "gaellepltvt",
+        "password": "link"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

@@ -5,7 +5,7 @@ info:
 
 http:
   method: DELETE
-  url: http://localhost:8084/adventures/5
+  url: http://localhost:8084/adventures/6
   auth: inherit
 
 settings:
