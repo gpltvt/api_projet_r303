@@ -17,7 +17,7 @@ API de carnet d'aventure sur le thème de The Legend of Zelda, réalisée avec S
 | Validation des données et gestion du 404 | Terminé |
 | Tests de l'API avec Bruno | Terminé |
 | Import de Hyrule Compendium en base | Terminé |
-| Relation One-to-Many entre `Adventure` et ses entrées | A faire |
+| Relation One-to-Many entre `Adventure` et ses entrées | Terminé |
 | Authentification par Bearer token | A faire |
 
 ### API externe
@@ -41,6 +41,13 @@ Code organisé en couches:
 - `entity` représente la table en base
 - `dto` objet reçu dans les requêtes, avec validation
 
+### Modèle de données
+Une aventure contient plusieurs pages (relation **One-to-Many""). Chaque page est liée à un élément du compendium.
+
+**SCHEMA MERMAID A IMPORTER**
+
+La suppression d'une aventure supprimer aussi ses pages (cascade).
+
 ### Lancer l'application
 Prérequis: Docker et Docker Compose
 ```bash
@@ -61,6 +68,56 @@ Base URL: `http://localhost:8084`
 | POST | `compendium/import` | Importer le Hyrule Compendium en base | 200 | 502 (API externe indisponible) |
 | GET | `/compendium/{id}` | Lister les éléments du compendium | 200 | |
 | GET | `/compendium/{id}` | Récupérer un élément du compendium | 200 | 404 |
+| POST | `/adventures/{id}/entries` | Ajouter une page à une aventure | 201 | 400, 404 |
+| GET | `/adventures/{id}/entries` | Lister les pages d'une aventure | 200 | 404 |
+| PUT | `/adventures/{id}/entries/{entryId}` | Modifier une page | 200 | 400, 404 |
+| DELETE | `/adventures/{id}/entries/{entryId}` | Supprimer une page | 204 | 404 |
 
 ### Tests
 Les requêtes de test sont dans le dossier `API_R303` : à ouvrir avec Bruno.
+
+## Recherches - Authentification et jeron Bearer
+### Pourquoi sécuriser l'API?
+Pour le moment, quiconcque peut créer, modifier ou supprimer des données. Il faut:
+- **S'authentifier**: prouver qui on est
+- **Etre autorisé**: avoir le droit de faire ce qu'on fait
+Quand une requête échoue, l'API le dit avec:
+- 401 Unauthorized
+- 403 Forbidden
+
+### Jeton Bearer
+Un code que l'on reçoit après s'être connecté, et qu'on envoie ensuite avec chaque requête. Le déteneur du jeton est considéré comme "autorisé".
+Ce jeton est envoyé dans un en-tête HTTP:
+```
+Authorization: Bearer <le jeton>
+```
+Le jeton donne accès à l'API, il faut donc le protéger. On le transmet en HTTPS, on ne le publie jamais et on lui donne une durée de vie limitée pour limiter les dégâts en cas de vol.
+
+### JWT (JSON Web Token)
+Format de jeton le plus courant. Il est composé de 3 parties:
+```
+en-tête . contenu . signature
+```
+- L'en-tête indique la méthode de signature.
+- Le contenu porte des informations: qui est l'utiliateur, quand le jeton expire.
+- La signature: elle est calculée avec une clé secrète que le serveur connaît. Si quelqu'un modifie le jeton, la signature ne correspond plus et l'API le refuse.
+
+**Attention**: Un JWT est signé mais pas chiffré. Quiconcque peut lire son contenu.
+
+**Avantage**: L'API n'a pas besoin de garder de garder en mémoire les utilisateurs connectés: il suffit de vérifier la signature.
+
+### OAuth 2.0
+Standard permettant à une application d'accéder à des informations d'un utilisateur sans connaître son mot de passe.
+4 acteurs interviennent:
+- Propriétaire de la ressource
+- Client
+- Serveur d'autorisation
+- Serveur de ressources
+
+Les 3 notions vues se combinent.
+
+### Notre choix (futur):
+Version simple avec Spring Security:
+- Route d'inscription et route de connexion, renvoyant un JWT.
+- Routes d'écriture réservées aux utiliateurs envoyant un jeton Bearer valide.
+- Code 401 quand le jeton est absent ou invalide.
