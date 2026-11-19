@@ -79,6 +79,7 @@ Base URL: `http://localhost:8084`
 | POST | `/auth/login` | Se connecter (renvoie un jeton) | Non | 200 | 400, 401 |
 | GET | `/compendium`, `/compendium{id}` | Lire le compendium | Non | 200 | 404 |
 | POST | `/compendium/import` | Importer le compendium | Oui | 200 | 401, 502 |
+
 Les routes protégées demandent l'en-tête `Authorization: Bearer <jeton>`.
 Remarque: un jeton absent, invalide ou expiré renverra **401**.
 
