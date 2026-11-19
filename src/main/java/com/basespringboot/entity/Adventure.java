@@ -1,17 +1,25 @@
 package com.basespringboot.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity 
-@Getter 
-@Setter 
-public class Adventure{
+import java.util.ArrayList;
+import java.util.List;
 
-    @Id 
+@Entity
+@Getter
+@Setter
+public class Adventure {
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     private String title;
+
+    @OneToMany(mappedBy = "adventure", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<Entry> entries = new ArrayList<>();
 }

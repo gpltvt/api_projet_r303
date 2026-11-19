@@ -1,0 +1,23 @@
+info:
+  name: Entry - modifier
+  type: http
+  seq: 21
+
+http:
+  method: PUT
+  url: http://localhost:8084/adventures/6/entries/3
+  body:
+    type: json
+    data: |-
+      {
+        "note": "Note modifiée",
+        "compendiumEntryId": 6
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

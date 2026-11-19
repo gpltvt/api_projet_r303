@@ -1,0 +1,23 @@
+info:
+  name: Entry - créer
+  type: http
+  seq: 15
+
+http:
+  method: POST
+  url: http://localhost:8084/adventures/5/entries
+  body:
+    type: json
+    data: |-
+      { 
+        "note": "Croisé près du pont",
+        "compendiumEntryId": 1
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

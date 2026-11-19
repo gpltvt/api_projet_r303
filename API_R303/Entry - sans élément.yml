@@ -1,0 +1,22 @@
+info:
+  name: Entry - sans élément
+  type: http
+  seq: 17
+
+http:
+  method: POST
+  url: http://localhost:8084/adventures/7/entries
+  body:
+    type: json
+    data: |-
+      {
+        "note": "test"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
