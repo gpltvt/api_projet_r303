@@ -1,7 +1,7 @@
 info:
   name: Adventure - lister
   type: http
-  seq: 23
+  seq: 16
 
 http:
   method: GET

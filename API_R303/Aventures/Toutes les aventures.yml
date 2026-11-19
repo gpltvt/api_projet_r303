@@ -1,12 +1,14 @@
 info:
-  name: Compendium - réimporter
+  name: Toutes les aventures
   type: http
-  seq: 11
+  seq: 4
 
 http:
-  method: POST
-  url: http://localhost:8084/compendium/import
-  auth: inherit
+  method: GET
+  url: http://localhost:8084/adventures
+  body:
+    type: json
+    data: ""
 
 settings:
   encodeUrl: true

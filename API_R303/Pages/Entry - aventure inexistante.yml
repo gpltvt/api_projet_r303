@@ -1,0 +1,22 @@
+info:
+  name: Entry - aventure inexistante
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: http://localhost:8084/adventures/99999/entries
+  body:
+    type: json
+    data: |-
+      {
+        "compendiumEntryId": 1
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

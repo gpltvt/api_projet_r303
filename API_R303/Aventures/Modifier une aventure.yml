@@ -1,17 +1,16 @@
 info:
-  name: Entry - mauvaise aventure
+  name: Modifier une aventure
   type: http
-  seq: 25
+  seq: 16
 
 http:
   method: PUT
-  url: http://localhost:8084/adventures/6/entries/1
+  url: http://localhost:8084/adventures/6
   body:
     type: json
     data: |-
       {
-        "note": "x",
-        "compendiumEntryId": 1
+        "title": "Titre modifié"
       }
   auth: inherit
 

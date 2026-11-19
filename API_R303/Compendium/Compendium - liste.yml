@@ -1,11 +1,11 @@
 info:
-  name: Adventure - supprimer avec pages
+  name: Compendium - liste
   type: http
-  seq: 26
+  seq: 3
 
 http:
-  method: DELETE
-  url: http://localhost:8084/adventures/6
+  method: GET
+  url: http://localhost:8084/compendium
   auth: inherit
 
 settings:

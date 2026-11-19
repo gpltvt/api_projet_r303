@@ -1,14 +1,12 @@
 info:
-  name: Toutes les aventures
+  name: Une aventure
   type: http
-  seq: 3
+  seq: 16
 
 http:
   method: GET
-  url: http://localhost:8084/adventures
-  body:
-    type: json
-    data: ""
+  url: http://localhost:8084/adventures/6
+  auth: inherit
 
 settings:
   encodeUrl: true

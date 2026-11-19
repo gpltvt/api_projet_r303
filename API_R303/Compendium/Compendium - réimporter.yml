@@ -1,11 +1,11 @@
 info:
-  name: Entry - lister, aventure inexistante
+  name: Compendium - réimporter
   type: http
-  seq: 20
+  seq: 4
 
 http:
-  method: GET
-  url: http://localhost:8084/adventures/99999/entries
+  method: POST
+  url: http://localhost:8084/compendium/import
   auth: inherit
 
 settings:

@@ -1,7 +1,7 @@
 info:
   name: Entry - créer
   type: http
-  seq: 15
+  seq: 5
 
 http:
   method: POST

@@ -1,17 +1,16 @@
 info:
-  name: Entry - créer une deuxième
+  name: Entry - sans élément
   type: http
-  seq: 16
+  seq: 5
 
 http:
   method: POST
-  url: http://localhost:8084/adventures/6/entries
+  url: http://localhost:8084/adventures/7/entries
   body:
     type: json
     data: |-
       {
-        "note": "Dans une grotte",
-        "compendiumEntryId": 2
+        "note": "test"
       }
   auth: inherit
 

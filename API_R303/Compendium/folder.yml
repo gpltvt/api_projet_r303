@@ -1,0 +1,7 @@
+info:
+  name: Compendium
+  type: folder
+  seq: 4
+
+request:
+  auth: inherit
